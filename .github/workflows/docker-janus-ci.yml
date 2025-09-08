@@ -24,8 +24,9 @@ jobs:
 
       - name: Verify dependencies
         run: |
-          docker run --rm debian:trixie-slim apt-get update && apt-get install -y pkg-config libconfig-dev libnice-dev
-          docker run --rm debian:trixie-slim pkg-config --modversion libnice
+          docker run --rm --user root debian:trixie-slim sh -c "apt-get update && apt-get install -y pkg-config libconfig-dev libnice-dev"
+          docker run --rm --user root debian:trixie-slim pkg-config --modversion libnice
+          docker run --rm --user root debian:trixie-slim pkg-config --modversion libconfig
 
       - name: Build and test Docker image
         run: |
