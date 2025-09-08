@@ -3,7 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     build-essential git automake autoconf libtool pkg-config \
     libglib2.0-dev libjansson-dev libnice-dev libssl-dev libsrtp2-dev \
-    libwebsockets-dev libconfig-dev \
+    libwebsockets-dev libconfig-dev libusrsctp-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /janus-gateway
 RUN git clone --single-branch --branch master https://github.com/meetecho/janus-gateway.git . && \
