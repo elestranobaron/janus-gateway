@@ -2,7 +2,7 @@ name: Janus Docker Image CI
 
 on:
   push:
-    branches: [ main ] # Change to 'develop' or another branch if needed
+    branches: [ develop ] # Change to 'develop' or another branch if needed
   pull_request:
     branches: [ main ]
 
