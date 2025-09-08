@@ -1,4 +1,4 @@
-Janus WebRTC Server
+Janus WebRTC Server Dockerized
 ===================
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](COPYING)
 ![janus-ci](https://github.com/meetecho/janus-gateway/workflows/janus-ci/badge.svg)
