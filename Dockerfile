@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /janus-gateway
 RUN git clone --single-branch --branch master https://github.com/meetecho/janus-gateway.git . && \
     ./autogen.sh && \
+    export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig && \
     ./configure --prefix=/usr/local --enable-websockets --enable-data-channels --disable-all-transports --enable-http --enable-websockets && \
     make && make install && make configs
 RUN chown -R root:root /usr/local/etc/janus && \
