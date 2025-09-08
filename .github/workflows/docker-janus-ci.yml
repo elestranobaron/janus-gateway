@@ -22,6 +22,14 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
+      - name: Build and test Docker image
+        run: |
+          docker build -t janus-test:latest .
+          docker run --rm -d -p 8088:8088 -p 8188:8188 --name janus-test janus-test:latest
+          sleep 5
+          docker logs janus-test | grep -q "Data Channels support not compiled" && exit 1 || exit 0
+          docker stop janus-test
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
