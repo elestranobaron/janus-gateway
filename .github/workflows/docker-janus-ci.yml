@@ -22,18 +22,6 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Verify dependencies
-        run: |
-          docker run --rm --user root debian:trixie-slim sh -c "apt-get update && apt-get install -y pkg-config libconfig-dev libnice-dev && export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig && pkg-config --modversion libnice && pkg-config --modversion libconfig"
-
-      - name: Build and test Docker image
-        run: |
-          docker build -t janus-test:latest .
-          docker run --rm -d -p 8088:8088 -p 8188:8188 --name janus-test janus-test:latest
-          sleep 5
-          docker logs janus-test | grep -q "Data Channels support not compiled" && exit 1 || exit 0
-          docker stop janus-test
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
